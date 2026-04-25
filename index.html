@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EHB | MASTER CONSOLE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --accent: #00ffcc; --bg: #0a0c10; --card: rgba(22, 27, 34, 0.95); --text: #f0f6fc; }
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        #matrix-canvas { position: fixed; top: 0; left: 0; z-index: -1; opacity: 0.15; }
+        header { text-align: center; padding: 40px 20px; border-bottom: 1px solid rgba(0, 255, 204, 0.2); background: rgba(10, 12, 16, 0.8); backdrop-filter: blur(10px); }
+        .logo { font-family: 'Orbitron', sans-serif; font-size: 28px; color: var(--accent); letter-spacing: 4px; text-shadow: 0 0 15px var(--accent); }
+        .live-status { display: inline-flex; align-items: center; gap: 8px; font-size: 10px; background: rgba(0, 255, 204, 0.1); padding: 6px 16px; border-radius: 50px; border: 1px solid var(--accent); margin-top: 15px; color: var(--accent); font-weight: bold; text-transform: uppercase; }
+        .dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; animation: blink 1.2s infinite; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
+        .container { max-width: 500px; margin: 30px auto; padding: 0 20px; }
+        .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 25px; }
+        .stat-item { background: var(--card); padding: 15px; border-radius: 12px; border: 1px solid #30363d; text-align: center; }
+        .stat-num { display: block; font-size: 18px; font-weight: bold; color: var(--accent); font-family: 'Orbitron'; }
+        .stat-label { font-size: 10px; opacity: 0.6; text-transform: uppercase; margin-top: 5px; }
+        .dash-grid { display: flex; flex-direction: column; gap: 12px; margin-bottom: 40px; }
+        .btn-link { display: flex; align-items: center; justify-content: space-between; background: var(--card); border: 1px solid #30363d; padding: 16px 20px; border-radius: 12px; text-decoration: none; color: var(--text); transition: 0.3s; }
+        .btn-link i { color: var(--accent); font-size: 18px; }
+        .btn-link:hover { border-color: var(--accent); transform: scale(1.02); background: rgba(0, 255, 204, 0.05); }
+        .warning-box { background: rgba(255, 50, 50, 0.08); border: 1px solid #ff4d4d; padding: 20px; border-radius: 15px; margin-bottom: 40px; text-align: center; }
+        .warning-box h4 { color: #ff4d4d; margin: 0 0 10px 0; font-family: 'Orbitron'; font-size: 13px; text-transform: uppercase; }
+        .warning-box p { font-size: 12px; line-height: 1.6; margin: 0; color: #f0f6fc; opacity: 0.9; }
+        footer { text-align: center; padding: 40px; font-size: 10px; opacity: 0.5; letter-spacing: 1px; }
+    </style>
+</head>
+<body>
+    <canvas id="matrix-canvas"></canvas>
+    <header>
+        <div class="logo">EHB OFFICIAL</div>
+        <div class="live-status"><div class="dot"></div> SYSTEM STATUS: ONLINE</div>
+    </header>
+    <div class="container">
+        <div class="stats-row">
+            <div class="stat-item"><span class="stat-num">150+</span><span class="stat-label">Deals Done</span></div>
+            <div class="stat-item"><span class="stat-num">99%</span><span class="stat-label">Success</span></div>
+            <div class="stat-item"><span class="stat-num" id="visitor-count">1.4K</span><span class="stat-label">Visitors</span></div>
+        </div>
+        <div class="dash-grid">
+            <a href="https://mcpegaming711-cpu.github.io/imposter-report2/" target="_blank" class="btn-link"><span><i class="fas fa-user-shield"></i> &nbsp; Who I Am</span><i class="fas fa-chevron-right"></i></a>
+            <a href="https://t.me/asifbio404" target="_blank" class="btn-link"><span><i class="fas fa-file-code"></i> &nbsp; Free Files Repository</span><i class="fas fa-chevron-right"></i></a>
+            <a href="https://t.me/+Wd_rcsQGOHQwMjQ1" target="_blank" class="btn-link"><span><i class="fab fa-telegram"></i> &nbsp; Main Community Channel</span><i class="fas fa-chevron-right"></i></a>
+            <a href="https://mcpegaming711-cpu.github.io/ehb-official-vault/" target="_blank" class="btn-link"><span><i class="fas fa-vault"></i> &nbsp; EHB Service Vault</span><i class="fas fa-chevron-right"></i></a>
+            <a href="https://www.facebook.com/share/1HrhNi8JfH/" target="_blank" class="btn-link"><span><i class="fab fa-facebook"></i> &nbsp; Official Facebook</span><i class="fas fa-chevron-right"></i></a>
+            <a href="https://wa.me/8801816731602" target="_blank" class="btn-link"><span><i class="fab fa-whatsapp"></i> &nbsp; WhatsApp Admin</span><i class="fas fa-chevron-right"></i></a>
+            <a href="https://t.me/shiam407" target="_blank" class="btn-link"><span><i class="fab fa-telegram-plane"></i> &nbsp; Telegram Contact</span><i class="fas fa-chevron-right"></i></a>
+        </div>
+        <div class="warning-box">
+            <h4><i class="fas fa-shield-alt"></i> Security Policy</h4>
+            <p>We do not participate in any "Admin Deals". All offers provided here are strictly fixed. Any exceptions will be stated separately.</p>
+        </div>
+    </div>
+    <footer>EHB TECHNOLOGY &copy; 2026 | DESIGNED BY CEO ASIF CHOWDHURY</footer>
+    <script>
+        const canvas = document.getElementById('matrix-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+        const letters = "01010101EHB_SECURITY";
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+        const drops = Array.from({ length: columns }).fill(1);
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(10, 12, 16, 0.08)'; ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#00ffcc'; ctx.font = fontSize + 'px monospace';
+            drops.forEach((y, i) => {
+                const text = letters[Math.floor(Math.random() * letters.length)];
+                ctx.fillText(text, i * fontSize, y * fontSize);
+                if (y * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+                drops[i]++;
+            });
+        }
+        setInterval(drawMatrix, 55);
+    </script>
+</body>
+</html>
